@@ -163,9 +163,9 @@ test:
           mode: :primary
         max_pool_size: 1
 
-# development:
-#   clients:
-#     default:
-#       uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-#       options:
-#         server_selection_timeout: 5
+production:
+  clients:
+    default:
+      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      options:
+        server_selection_timeout: 5
