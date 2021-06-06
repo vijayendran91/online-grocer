@@ -1,7 +1,7 @@
 development:
   clients:
     default:
-      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/online_grocer?retryWrites=true&w=majority
+      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/online_grocers?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
   # Configure available database clients. (required)
@@ -171,6 +171,6 @@ test:
 production:
   clients:
     default:
-      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/online-grocers?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
