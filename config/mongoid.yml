@@ -9,8 +9,8 @@ development:
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - localhost:27017
-      options:
+        - 0.0.0.0:27017
+      #options:
         # Note that all options listed below are Ruby driver client options (the mongo gem).
         # Please refer to the driver documentation of the version of the mongo gem you are using
         # for the most up-to-date list of options.
@@ -107,7 +107,7 @@ development:
 
 
   # Configure Mongoid specific options. (optional)
-  options:
+  #options:
     # Includes the root model name in json serialization. (default: false)
     # include_root_in_json: false
 
@@ -162,3 +162,10 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+# development:
+#   clients:
+#     default:
+#       uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+#       options:
+#         server_selection_timeout: 5
