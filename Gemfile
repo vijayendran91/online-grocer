@@ -5,8 +5,6 @@ ruby '2.7.3'
 
 gem 'pry'
 
-gem 'bcrypt'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 # Use Puma as the app server
