@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    
   end
 
   # GET /users/new
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
+    print("\n\n\n #{user_params}\n\n\n")
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -64,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:phone, :fname, :lname)
+      params.require(:user).permit(:phone, :fname, :lname, :password)
     end
 end
