@@ -1,1 +1,75 @@
 @import "~bootstrap/scss/bootstrap";
+
+
+.navbar-custom{
+  background-color: #239B56
+}
+
+.navbar-custom .navbar-brand {
+  color: white;
+  &:hover{
+    background-color: inherit;
+  }
+}
+
+.navbar-custom .form-inline{
+  display: flex;
+  margin-left: auto;
+}
+
+.btn{
+  padding-left: 10px;
+  margin-right: 10px;
+  color: white !important;
+  &:hover{
+      background-color: #A9DFBF
+  }
+}
+
+.navbar-search{
+  padding-right: 10px;
+  margin-right: 10px;
+  border-radius:5px;
+  box-shadow: 0px 0px 0px;
+  border-style: none;
+}
+
+// .navbar-custom .navbar-brand{
+//   color: black;
+//   &:hover{
+//     background-color: white;
+//     color: #6c757d;
+//   }
+// }
+//
+// .navbar-custom .navbar-btn{
+//   background-color: #1E8449;
+//   color: white;
+//   margin-right: 1%;
+//   margin-left: 1%;
+//   &:hover{
+//     background-color: #52BE80;
+//   }
+// }
+//
+// .nav-link{
+//   margin-right: 1%;
+//   margin-left: 1%;
+//   &:hover{
+//     background-color: #D5F5E3;
+//     color: #6c757d;
+//   }
+// }
+//
+// .navbar-custom .navbar-collapse .form-inline{
+//   margin-left: auto !important;
+// }
+//
+// .navbar-custom .navbar-collapse .form-inline .btn{
+//   background-color: #1E8449;
+//   color: white;
+//
+//   &:hover{
+//     background-color: #52BE80;
+//   }
+// }

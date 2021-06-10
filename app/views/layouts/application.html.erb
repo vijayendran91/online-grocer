@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OnlineGrocer</title>
+    <title>Online Grocer</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- Button trigger modal -->
-    <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="/">Online Grocer</a>
-    </nav>
+
+
+
+<nav class="navbar navbar-custom navbar-expand-md navbar-light">
+  <a class="navbar-brand" href="/">Our Logo</a>
+  <form class="form-inline">
+    <input class="navbar-search" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn" type="submit">Search</button>
+    <a class="btn" href="/" role="button">Login</a>
+    <a class="btn" href="/" role="button">Sign Up</a>
+  </form>
+</nav>
 
   </head>
 
