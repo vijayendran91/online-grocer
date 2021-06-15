@@ -2,7 +2,7 @@
   <div id="navbarMenu" class="collapse navbar-collapse">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link  nav2-btn" href="#">Breakfast & Diary</a>
+        <a class="nav-link  nav2-btn" href="#bandd">Breakfast & Diary</a>
       </li>
       <li class="nav-item">
         <a class="nav-link nav2-btn" href="#pandr">Pulses & Rice</a>
@@ -18,12 +18,62 @@
       </li>
     </ul>
 </nav>
-<div data-spy="scroll" data-target="#navbar2" data-offset="0">
-  <h4 id="pandr">Pulses and Rice</h4>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <h4 id="sandm">Spices and Masalas</h4>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <h4 id="fpands">Food Products and Snacks</h4>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <h4 id="handg">Homecare and other products</h4>
+
+<!--Images Carousel -->
+<br><br>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <%=image_tag("groceries.jpg", :class=>"card-img-top d-block w-100", :alt=>"Third Slide", :style=> "width: fit-content; height: 500px;")%>
+    </div>
+    <div class="carousel-item">
+      <%=image_tag("rice.jpg", :class=>"card-img-top d-block w-100", :alt=>"Third Slide", :style=> "width: fit-content; height: 500px;")%>
+    </div>
+    <div class="carousel-item">
+      <%=image_tag("toor-dal.jpg", :class=>"card-img-top d-block w-100", :alt=>"Third Slide", :style=> "width: fit-content; height: 500px;")%>
+    </div>
+  </div>
 </div>
+
+
+
+
+<div data-spy="scroll" data-target="#navbar2" data-offset="0">
+  <!-- <h4 id="pandr">Pulses and Rice</h4> -->
+  <div id="bandd">
+    <h4>Breakfast and Diary</h4>
+    <div class="card" style="width: 18rem;">
+    <%=image_tag("aavin-milk-blue.jpg", :class=>"card-img-top")%>
+    <!-- <img class="card-img-top" src="app/assets/images/aavin-milk-blue.jpg" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+      </div>
+    </div>
+  </div>
+  <div id="pandr">
+    <h4>Pulses and Rice</h4>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div id="sandm">
+    <h4>Spices and Masalas</h4>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div id="fpands">
+    <h4>Food Products and Snacks</h4>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div id="handg">
+    <h4>Homecare and Other Goods</h4>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    setInterval(function(){
+      $('.carousel').carousel('next');
+    },3000);
+  });
+</script>
