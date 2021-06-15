@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 $base-green: #239B56;
+$nav2-color: #EAFAF1;
 .navbar-custom{
   background-color: $base-green;
 }
@@ -26,6 +27,7 @@ $base-green: #239B56;
 }
 
 .navbar-search{
+  width: 400px;
   padding-right: 10px;
   margin-right: 10px;
   border-radius:5px;
@@ -35,4 +37,15 @@ $base-green: #239B56;
 
 .custom-form{
   margin-left: 40%;
+}
+
+
+.navbar2-custom{
+  background-color: $nav2-color;
+}
+
+.navbar2-custom .nav2-btn{
+  margin-left: 10px;
+  color: white !important;
+  background-color: $base-green
 }
