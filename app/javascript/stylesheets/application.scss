@@ -1,8 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
-
-
+$base-green: #239B56;
 .navbar-custom{
-  background-color: #239B56
+  background-color: $base-green;
 }
 
 .navbar-custom .navbar-brand {
@@ -34,42 +33,6 @@
   border-style: none;
 }
 
-// .navbar-custom .navbar-brand{
-//   color: black;
-//   &:hover{
-//     background-color: white;
-//     color: #6c757d;
-//   }
-// }
-//
-// .navbar-custom .navbar-btn{
-//   background-color: #1E8449;
-//   color: white;
-//   margin-right: 1%;
-//   margin-left: 1%;
-//   &:hover{
-//     background-color: #52BE80;
-//   }
-// }
-//
-// .nav-link{
-//   margin-right: 1%;
-//   margin-left: 1%;
-//   &:hover{
-//     background-color: #D5F5E3;
-//     color: #6c757d;
-//   }
-// }
-//
-// .navbar-custom .navbar-collapse .form-inline{
-//   margin-left: auto !important;
-// }
-//
-// .navbar-custom .navbar-collapse .form-inline .btn{
-//   background-color: #1E8449;
-//   color: white;
-//
-//   &:hover{
-//     background-color: #52BE80;
-//   }
-// }
+.custom-form{
+  margin-left: 40%;
+}

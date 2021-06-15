@@ -11,19 +11,43 @@
 
 
 
-<nav class="navbar navbar-custom navbar-expand-md navbar-light">
-  <a class="navbar-brand" href="/">Our Logo</a>
-  <form class="form-inline">
-    <input class="navbar-search" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn" type="submit">Search</button>
-    <a class="btn" href="/" role="button">Login</a>
-    <a class="btn" href="/" role="button">Sign Up</a>
-  </form>
-</nav>
+    <nav class="navbar navbar-custom navbar-expand-md navbar-light">
+      <%= link_to "Online Grocers", root_path, :class=> "navbar-brand"%>
+      <div class="dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+        </div>
+      </div>
+      <button id="navburger" class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarMenu" class="collapse navbar-collapse">
+        <form class="form-inline">
+          <input class="navbar-search" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn" type="submit">Search</button>
+          <a class="btn" href="/" role="button">Login</a>
+          <%= link_to "Sign Up", new_user_path("60be14624c22c26bec941904"), :method => "get", :class => "btn" %>
+          <div class="dropdown">
+
+          </div>
+          <!-- <a class="btn" href="/" role="button">Sign Up</a> -->
+        </form>
+      </div>
+    </nav>
 
   </head>
 
-  <body>
+  <body style="background-color: #FEF9E7;">
     <%= yield %>
   </body>
+
+  <!-- <script>
+    $(document).ready(function () {
+      var isNavCollapsed = true;
+      $('#navburger').click(function(){
+
+      });
+    });
+  </script> -->
 </html>
