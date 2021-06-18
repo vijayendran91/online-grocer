@@ -1,9 +1,13 @@
 development:
   clients:
     default:
-      uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/online_grocers?retryWrites=true&w=majority
+      database: online_grocer_development
+      hosts:
+        - localhost:27017
       options:
-        server_selection_timeout: 5
+        read:
+          mode: :primary
+        max_pool_size: 1
   # Configure available database clients. (required)
   # clients:
   #   # Defines the default client. (required)
