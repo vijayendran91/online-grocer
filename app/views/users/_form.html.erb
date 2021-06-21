@@ -2,7 +2,7 @@
   <%= form_with(model: user, local: true) do |form| %>
     <% if user.errors.any? %>
       <div class="alert alert-danger">
-        <h2><%= pluralize(user.errors.count, "Error") %> :</h2>
+        <h3><%= pluralize(user.errors.count, "Error") %> :</h3>
 
         <ul>
           <% user.errors.full_messages.each do |message| %>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="actions">
-      <div class="btn">
+      <div class="form-btn">
         <%= form.submit %>
       </div>
     </div>

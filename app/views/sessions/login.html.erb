@@ -1,0 +1,50 @@
+<h1 style="margin-left: 40%; margin-top: 5%;">Log In</h1>
+<div class="custom-form">
+  <%= form_for(:session_data, :url => user_login_path) do |form| %>
+    <% if @error %>
+      <div class="alert alert-danger">
+        <h3>Error</h3>
+        <br>
+        <ul>
+          <li>
+            <%=@error%>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= form.label :phone%>
+      <br>
+      <%= form.text_field :phone%>
+    </div>
+    <div class="field">
+      <%= form.label :"Password" %>
+      <br>
+      <%= form.password_field :password %>
+    </div>
+
+    <!-- <div class="actions">
+      <div class="form-btn" id="login">
+        <input type="button" id="login" value="Get OTP">
+      </div>
+    </div> -->
+
+    <div class="actions">
+      <div class="form-btn">
+        <%= form.submit "Login"%>
+      </div>
+    </div>
+    <%# <%= render 'otp_modal', :form => form%>
+  <% end %>
+</div>
+
+<script>
+  $('document').ready(function(){
+    $('#login').click(function(){
+      $('#myModal').modal('show');
+    });
+    $('#modalClose').click(function(){
+      $('#myModal').modal('hide');
+    });
+  });
+</script>
