@@ -1,11 +1,14 @@
 module SessionsHelper
   def log_in(user)
-    binding.pry
-    session[:user_id] = user.id
+    session[:user_id] = user.id.to_s
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    if session[:user_id]
+      @current_user = User.find_by(:id => session[:user_id])
+    else
+      @current_user = nil
+    end
   end
 
   def logged_in?

@@ -21,8 +21,12 @@
           <input class="navbar-search" type="search" placeholder="Search" aria-label="Search">
           <button class="btn" type="submit">Search</button>
           <!-- <a class="btn" href="/" role="button">Login</a> -->
-          <%= link_to "Log In", user_login_path, :method => "get", :class => "btn" %>
-          <%= link_to "Sign Up", new_user_path("60be14624c22c26bec941904"), :method => "get", :class => "btn" %>
+          <% if logged_in? %>
+            <%= link_to "Log Out", user_logout_path, :method => "delete", :class => "btn" %>
+          <% else %>
+            <%= link_to "Log In", user_login_path, :method => "get", :class => "btn"%>
+            <%= link_to "Sign Up", new_user_path, :method => "get", :class => "btn" %>
+          <% end %>
           <div class="dropdown">
 
           </div>

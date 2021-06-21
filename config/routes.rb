@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   get 'user/login', :to => 'sessions#login'
   post 'user/login', :to=> 'sessions#new_session'
-  delete 'user/logout', :to=> 'sessions#destroy'
+  delete 'user/logout', :to=> 'sessions#logout'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

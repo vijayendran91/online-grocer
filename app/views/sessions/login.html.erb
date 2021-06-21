@@ -3,8 +3,6 @@
   <%= form_for(:session_data, :url => user_login_path) do |form| %>
     <% if @error %>
       <div class="alert alert-danger">
-        <h3>Error</h3>
-        <br>
         <ul>
           <li>
             <%=@error%>
