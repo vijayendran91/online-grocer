@@ -1,18 +1,63 @@
-<h1 style="margin-left: 40%; margin-top: 5%;">OTP Verification <%=@user.phone%></h1>
+<h1 style="margin-left: 40%; margin-top: 5%;">OTP Verification</h1>
 <div class="custom-form">
   <%= form_for(:session_data, :url => user_verify_otp_path) do |form| %>
     <div class="field">
-      <%= form.label :"OTP"%>
+      <%= form.label :"Enter OTP"%>
       <br>
       <%= form.text_field :otp%>
     </div>
-      <%= @user%>
       <%= form.hidden_field :user_id, value: @user.user_id%>
 
     <div class="actions">
       <div class="form-btn">
-        <%= form.submit "Login"%>
+        <%= form.submit "Verify"%>
       </div>
     </div>
+    <div id="otpTimer">1:59</div>
+    <a href="javascript:void(0)" class="otplink" id="sendOTP">Resend OTP</a>
   <% end %>
+
 </div>
+
+<script>
+  $('document').ready(function(){
+    var timercount = 0;
+    var phone = <%= raw @user.phone%>
+    debugger;
+    $('#sendOTP').hide();
+    var timeleftsec = 5;
+    var timeleftmin = 0;
+
+    var otpTimer = setInterval(function(){
+      if(timeleftsec<=0){
+        timeleftmin--;
+        timeleftsec = 59;
+        debugger;
+        if(timeleftsec >= 0 && timeleftmin < 0){
+          $('#otpTimer').hide();
+          clearTimeout(otpTimer);
+          $('#sendOTP').show();
+        }
+        document.getElementById("otpTimer").innerHTML = timeleftmin+":"+timeleftsec;
+      }
+      timeleftsec--;
+      document.getElementById("otpTimer").innerHTML = timeleftmin+":"+timeleftsec;
+      timercount++;
+    }, 1000);
+
+
+    $('#sendOTP').click(function(){
+      $('#sendOTP').hide();
+      $.ajax({
+        url: "verify_otp",
+        type: "GET",
+        data: {phone: phone},
+        dataType: "html",
+        success: function(data) {
+          console.log(data)
+        }
+      });
+    });
+
+  });
+</script>

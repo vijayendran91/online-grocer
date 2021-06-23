@@ -24,7 +24,10 @@ class SessionsController < ApplicationController
           @user = User.find_by(:phone => params[:phone])
           response = TwoFactor.send_passcode(params[:phone])
           @user.update({:otp_session => response["Details"]})
-          log_in @user
+          respond_to do |format|
+            format.html # show.html.erb
+            format.json { render json: @user }
+          end
         rescue => error
           redirect_to root_path
         end
@@ -35,9 +38,8 @@ class SessionsController < ApplicationController
       otp = params[:session_data][:otp]
       user = User.find_by(:user_id => params[:session_data][:user_id])
       verification_response = TwoFactor.verify_passcode(user[:otp_session], otp)
-      binding.pry
+      log_in @user
       redirect_to root_path
-
     end
   end
 

@@ -60,3 +60,9 @@ $nav2-color: #EAFAF1;
   padding-bottom: 0px;
   width: 350px !important;
 }
+
+.custom-form .otplink {
+  &:hover{
+    background-color: inherit;
+  }
+}
