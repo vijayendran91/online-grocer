@@ -178,3 +178,6 @@ production:
       uri: mongodb+srv://vijay_online_grocer:vijay1234@online-grocer.w4xhl.mongodb.net/online-grocers?retryWrites=true&w=majority
       options:
         server_selection_timeout: 5
+
+options:
+  raise_not_found_error: false

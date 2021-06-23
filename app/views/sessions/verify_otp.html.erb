@@ -1,0 +1,18 @@
+<h1 style="margin-left: 40%; margin-top: 5%;">OTP Verification <%=@user.phone%></h1>
+<div class="custom-form">
+  <%= form_for(:session_data, :url => user_verify_otp_path) do |form| %>
+    <div class="field">
+      <%= form.label :"OTP"%>
+      <br>
+      <%= form.text_field :otp%>
+    </div>
+      <%= @user%>
+      <%= form.hidden_field :user_id, value: @user.user_id%>
+
+    <div class="actions">
+      <div class="form-btn">
+        <%= form.submit "Login"%>
+      </div>
+    </div>
+  <% end %>
+</div>
