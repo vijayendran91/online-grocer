@@ -6,7 +6,6 @@ class TwoFactor
   def self.send_passcode(phone)
     # response = get("https://2factor.in/API/V1/#{TWO_FACTOR_API_KEY}/SMS/#{phone}/AUTOGEN/MUNNAH")
     # response.parsed_response
-    binding.pry
     {"Status"=>"Success", "Details"=>"77382b51"}
   end
 

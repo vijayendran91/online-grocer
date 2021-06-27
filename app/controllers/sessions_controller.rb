@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def verify_otp
     if request.get?
-      if params[:phone]
+      if !params[:phone].nil?
         begin
           @user = User.find_by(:phone => params[:phone])
           response = TwoFactor.send_passcode(params[:phone])
@@ -31,14 +31,24 @@ class SessionsController < ApplicationController
         rescue => error
           redirect_to root_path
         end
+      elsif !params[:sign_up_data][:phone].nil?
+        params.permit(:sign_up_data)
+        binding.pry
+        @user = User.find_by(:phone => params[:sign_up_data][:phone])
+        response = TwoFactor.send_passcode(params[:sign_up_data][:phone])
+        @user.update({:otp_session => response["Details"]})
+        respond_to do |format|
+          format.html # show.html.erb
+          format.json { render json: @user }
+        end
       end
     elsif request.post?
       binding.pry
       params.permit(:session_data)
       otp = params[:session_data][:otp]
-      user = User.find_by(:user_id => params[:session_data][:user_id])
+      user = User.find_by(:phone => params[:session_data][:phone])
       verification_response = TwoFactor.verify_passcode(user[:otp_session], otp)
-      log_in @user
+      log_in user
       redirect_to root_path
     end
   end

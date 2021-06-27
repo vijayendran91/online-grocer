@@ -17,14 +17,22 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    binding.pry
   end
 
   # POST /users or /users.json
   def create
     @user = User.new(user_params)
+    response = TwoFactor.send_passcode(params[:phone])
+    @user[:otp_session] = response["Details"]
+    binding.pry
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        binding.pry
+        sign_up_data = {:phone => @user[:phone],
+                        :action => "sign_up"
+                       }
+        format.html { redirect_to user_verify_otp_path(:sign_up_data => sign_up_data), notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
         binding.pry

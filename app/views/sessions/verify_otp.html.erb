@@ -6,7 +6,7 @@
       <br>
       <%= form.text_field :otp%>
     </div>
-      <%= form.hidden_field :user_id, value: @user.user_id%>
+      <%= form.hidden_field :phone, value: @user[:phone]%>
 
     <div class="actions">
       <div class="form-btn">
