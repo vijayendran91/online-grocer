@@ -3,7 +3,7 @@ class User
   include ActiveModel::SecurePassword
   # validates :phone, :presence => true, :length => {:is => 10}
   # validates_uniqueness_of :phone
-
+  has_many :addresses
   field :phone, type: String
   field :user_id, type: String
   field :fname, type: String

@@ -1,19 +1,8 @@
+<h1 style="margin-left: 40%; margin-top: 5%;">Account Settings</h1>
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @user.phone %>
-</p>
-
-<p>
-  <strong>Fname:</strong>
-  <%= @user.fname %>
-</p>
-
-<p>
-  <strong>Lname:</strong>
-  <%= @user.lname %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<form class="custom-form">
+  <label><%=@user.fname%></label><br>
+  <label><%=@user.lname%></label><br>
+  <label><%=@user.phone%></label><br>
+  <%= link_to 'Edit', edit_user_path(@user.user_id) %>
+</form>

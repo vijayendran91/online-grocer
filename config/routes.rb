@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   post 'user/verify_otp', :to=> 'sessions#verify_otp'
   delete 'user/logout', :to=> 'sessions#logout'
 
+
+  get 'user/account_settings', :to=> 'users#show'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
