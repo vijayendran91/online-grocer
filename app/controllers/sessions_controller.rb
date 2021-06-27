@@ -33,7 +33,6 @@ class SessionsController < ApplicationController
         end
       elsif !params[:sign_up_data][:phone].nil?
         params.permit(:sign_up_data)
-        binding.pry
         @user = User.find_by(:phone => params[:sign_up_data][:phone])
         response = TwoFactor.send_passcode(params[:sign_up_data][:phone])
         @user.update({:otp_session => response["Details"]})
@@ -43,7 +42,6 @@ class SessionsController < ApplicationController
         end
       end
     elsif request.post?
-      binding.pry
       params.permit(:session_data)
       otp = params[:session_data][:otp]
       user = User.find_by(:phone => params[:session_data][:phone])

@@ -25,8 +25,8 @@
     var phone = <%= raw @user.phone%>
     debugger;
     $('#sendOTP').hide();
-    var timeleftsec = 5;
-    var timeleftmin = 0;
+    var timeleftsec = 59;
+    var timeleftmin = 1;
 
     var otpTimer = setInterval(function(){
       if(timeleftsec<=0){
