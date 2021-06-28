@@ -10,8 +10,16 @@ class User
   field :lname, type: String
   field :password_digest, type: String
   field :otp_session, type: String
+  field :permission, type: Array, default: []
   before_save :user_id_make
   has_secure_password
+
+
+  INVENTORY_MANAGER = 'm'
+  DELIVERY_AGENT = 'd'
+  CASHIER = 'c'
+  ADMIN = 'a'
+  
 
   def user_id_make
     self.user_id = self._id
