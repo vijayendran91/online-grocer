@@ -19,6 +19,7 @@ class User
   DELIVERY_AGENT = 'd'
   CASHIER = 'c'
   ADMIN = 'a'
+  USER_PERMISSIONS=[INVENTORY_MANAGER, DELIVERY_AGENT, CASHIER, ADMIN]
   
 
   def user_id_make

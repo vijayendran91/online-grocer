@@ -5,6 +5,17 @@ $nav2-color: #EAFAF1;
   background-color: $base-green;
 }
 
+.admin-navbar-custom{
+  background-color: black;
+}
+
+.admin-navbar-custom .admin-custom-navbar-brand{
+  color: white;
+  &:hover{
+    color: white !important;
+  }
+}
+
 .navbar-custom .navbar-brand {
   color: white;
   &:hover{

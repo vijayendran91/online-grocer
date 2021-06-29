@@ -1,1 +1,3 @@
-<h1>Admin Homepage</h1>
+<%if !@is_admin_logged_in %>
+  <%=render "admin/admin_login"%>
+<%end%>

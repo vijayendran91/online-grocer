@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 
   #Admin
   get 'user/qwe/admin', :to=> 'admin#admin_home'
+  get 'user/qwe/admin/item_list', :to=> 'admin#item_list'
 end
