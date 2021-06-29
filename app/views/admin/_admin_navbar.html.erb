@@ -1,10 +1,11 @@
 <nav class="navbar admin-navbar-custom navbar-expand-md navbar-light">
-  <%= link_to "Online Grocers", "/user/qwe/admin", :class=> "navbar-brand admin-custom-navbar-brand"%>
+  <%= link_to "Online Grocers", "/qwe/admin", :class=> "navbar-brand admin-custom-navbar-brand"%>
   <button id="navburger" class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div id="navbarMenu" class="collapse navbar-collapse">
     <form class="form-inline">
+      <%= link_to "Items", "/qwe/admin/item_list", :method => "get", :class => "btn admin-navbar-btn" %>
     </form>
   </div>
 </nav>

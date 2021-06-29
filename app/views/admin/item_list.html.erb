@@ -1,0 +1,43 @@
+<div class="admin_item_crud">
+  <a href="javascript:void(0)" class="btn admin-btn" id="addItems">Add Item</a>
+  <a href="javascript:void(0)" class="btn admin-btn" id="editItems">Edit Item</a>
+</div>
+<div id="newItem">
+  <%= render 'admin/admin_items_form', :item => @new_item %>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item Name</th>
+      <th scope="col">Item Price</th>
+      <th scope="col">Item Quantity</th>
+      <th scope="col">Item Guage Unit</th>
+      <th scope="col">Item Inventory Quantity</th>
+      <th scope="col">Item Image</th>
+      <th scope="col">Wholesale Contact</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%(0..@items.size-1).each do |i| %>
+      <tr>
+        <th scope="row"><%=i+1%></th>
+        <td><%=@items[i][:itm_name] %></td>
+        <td><%=@items[i][:itm_price]%></td>
+        <td><%=@items[i][:itm_qty]%></td>
+        <td><%=@items[i][:itm_g_u]%></td>
+        <td><%=@items[i][:itm_inv_qty]%></td>
+        <td><%= image_tag @items[i].image.url ,class: 'admin-list-image'%></td>
+        <td><%=@items[i][:itm_wslae_cntct]%></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<script>
+  $('document').ready(function(){
+    $('#newItem').hide();
+    $('#addItems').click(function(){
+      $('#newItem').toggle();
+    })
+  });
+</script>
