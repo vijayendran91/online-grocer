@@ -3,7 +3,14 @@ class UsersController < ApplicationController
 
   # GET /users or /users.json
   def home
-    @users = User.all
+    @items= Item.all
+    @item_ctg = {}
+    Item::ITEM_CATAGORIES.each do |key, val|
+      @item_ctg[key.to_sym] = []
+    end
+    @items.each do |item|
+      @item_ctg[Item::ITEM_CATAGORIES_REV[item[:itm_ctg]]].push(item)
+    end
   end
 
   # GET /users/1 or /users/1.json

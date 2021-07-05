@@ -14,6 +14,7 @@
       <th scope="col">Item Quantity</th>
       <th scope="col">Item Guage Unit</th>
       <th scope="col">Item Inventory Quantity</th>
+      <th scope="col">Catagory</th>
       <th scope="col">Item Image</th>
       <th scope="col">Wholesale Contact</th>
     </tr>
@@ -27,6 +28,7 @@
         <td><%=@items[i][:itm_qty]%></td>
         <td><%=@items[i][:itm_g_u]%></td>
         <td><%=@items[i][:itm_inv_qty]%></td>
+        <td><%=@items[i][:itm_ctg]%></td>
         <td><%= image_tag @items[i].image.url ,class: 'admin-list-image'%></td>
         <td><%=@items[i][:itm_wslae_cntct]%></td>
       </tr>

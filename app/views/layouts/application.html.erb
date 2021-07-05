@@ -9,10 +9,10 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%if controller.class.name.split("::").first=="UsersController"%>
-      <%= render "layouts/user_navbar"%>
-    <%else%>
+    <%if controller.class.name.split("::").first=="AdminController"%>
       <%= render "admin/admin_navbar"%>
+    <%else%>
+      <%= render "layouts/user_navbar"%>
     <%end%>
 
   </head>
@@ -21,12 +21,12 @@
     <%= yield %>
   </body>
 
-  <!-- <script>
+  <script>
     $(document).ready(function () {
       var isNavCollapsed = true;
       $('#navburger').click(function(){
 
       });
     });
-  </script> -->
+  </script>
 </html>

@@ -20,7 +20,7 @@
 </nav>
 
 <!--Images Carousel -->
-<br><br>
+<br>
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -42,30 +42,76 @@
   <!-- <h4 id="pandr">Pulses and Rice</h4> -->
   <div id="bandd">
     <h4>Breakfast and Diary</h4>
-    <div class="card" style="width: 18rem;">
-    <%=image_tag("aavin-milk-blue.jpg", :class=>"card-img-top")%>
-    <!-- <img class="card-img-top" src="app/assets/images/aavin-milk-blue.jpg" alt="Card image cap"> -->
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+
+    <div style="display: flex;">
+      <div style="display: flex;">
+        <%@item_ctg[:bandd].each do |item|%>
+          <div class="card item-card" style="width: 10rem;">
+            <%= image_tag item.image.url%>
+            <div class="card-body">
+              <h7 class="card-title"><%=item[:itm_name]%></h7>
+              <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+            </div>
+          </div>
+        <%end%>
       </div>
     </div>
   </div>
   <div id="pandr">
     <h4>Pulses and Rice</h4>
+    <div style="display: flex;">
+      <%@item_ctg[:pandr].each do |item|%>
+        <div class="card item-card" style="width: 10rem;">
+          <%= image_tag item.image.url%>
+          <div class="card-body">
+            <h7 class="card-title"><%=item[:itm_name]%></h7>
+            <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div id="sandm">
     <h4>Spices and Masalas</h4>
+    <div style="display: flex;">
+      <%@item_ctg[:sandm].each do |item|%>
+        <div class="card item-card" style="width: 10rem;">
+          <%= image_tag item.image.url%>
+          <div class="card-body">
+            <h7 class="card-title"><%=item[:itm_name]%></h7>
+            <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div id="fpands">
     <h4>Food Products and Snacks</h4>
+    <div style="display: flex;">
+      <%@item_ctg[:fpands].each do |item|%>
+        <div class="card item-card" style="width: 10rem;">
+          <%= image_tag item.image.url%>
+          <div class="card-body">
+            <h7 class="card-title"><%=item[:itm_name]%></h7>
+            <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
   </div>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   <div id="handg">
     <h4>Homecare and Other Goods</h4>
+    <div style="display: flex;">
+      <%@item_ctg[:handg].each do |item|%>
+        <div class="card item-card" style="width: 10rem;">
+          <%= image_tag item.image.url%>
+          <div class="card-body">
+            <h7 class="card-title"><%=item[:itm_name]%></h7>
+            <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
   </div>
 </div>
 
@@ -74,6 +120,6 @@
   $(document).ready(function(){
     setInterval(function(){
       $('.carousel').carousel('next');
-    },3000);
+    },5000);
   });
 </script>

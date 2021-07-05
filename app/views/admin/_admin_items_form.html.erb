@@ -15,43 +15,41 @@
     <br>
     <%= form.text_field :itm_name %>
   </div>
-
   <div class="field">
     <%= form.label :"Item Price" %>
     <br>
     <%= form.text_field :itm_price %>
   </div>
-
   <div class="field">
     <%= form.label :"Item Quantity" %>
     <br>
     <%= form.text_field :itm_qty %>
   </div>
-
   <div class="field">
     <%= form.label :"Item Guage Unit" %>
     <br>
     <%= form.text_field :itm_g_u %>
   </div>
-
   <div class="field">
     <%= form.label :"Item Inventory Quantity" %>
     <br>
     <%= form.text_field :itm_inv_qty %>
   </div>
-
+  <div class="field">
+    <%= form.label :"Item Catagory" %>
+    <br>
+    <%= form.select :itm_ctg, @item_categories%>
+  </div>
   <div class="field">
     <%= form.label :"Item Wholesale Contact" %>
     <br>
     <%= form.text_field :itm_wslae_cntct %>
   </div>
-
   <div class="field">
     <%= form.label :"Item Image Upload" %>
     <br>
     <%= form.file_field :image %>
   </div>
-
   <div class="actions">
     <div class="form-btn">
       <%= form.submit %>

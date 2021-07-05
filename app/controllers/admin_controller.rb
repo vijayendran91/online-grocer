@@ -5,7 +5,11 @@ class AdminController < ApplicationController
 
   def item_list
     @items = Item.all
+    (0..@items.size-1).each do |i|
+      @items[i][:itm_ctg] = Item::ITEM_CATAGORIES[@items[i][:itm_ctg].to_sym]
+    end
     @new_item = Item.new
+    @item_categories = Item::ITEM_CATAGORIES_LIST
   end
 
   def new_item
