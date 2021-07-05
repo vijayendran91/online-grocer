@@ -50,7 +50,16 @@
             <%= image_tag item.image.url%>
             <div class="card-body">
               <h7 class="card-title"><%=item[:itm_name]%></h7>
-              <div class="col"> <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a> </div>
+              <div class="col">
+                <a href="javascript:void(0)">
+                  <i class="bi bi-cart-dash addToCart">
+                  </i>
+                </a>
+                <a href="javascript:void(0)">
+                  <i class="bi bi-cart-plus">
+                  </i>
+                </a>
+              </div>
             </div>
           </div>
         <%end%>
@@ -121,5 +130,9 @@
     setInterval(function(){
       $('.carousel').carousel('next');
     },5000);
+
+    $('.addToCart').click(function(){
+      alert("Add to cart");p
+    });
   });
 </script>

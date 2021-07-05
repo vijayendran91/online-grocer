@@ -15,6 +15,7 @@ require("turbolinks").start()
 require("channels")
 
 import "../stylesheets/application.scss"
+import 'bootstrap-icons/font/bootstrap-icons.css'
 
 var jQuery = require("jquery");
 global.$ = global.jQuery = jQuery;
