@@ -50,7 +50,31 @@
     $(".addToCart").on('click', function(event){
       event.stopPropagation();
       event.stopImmediatePropagation();
-      alert('H');
+      var itemId = $('.addToCart').data('item-id')
+      $.ajax({
+        url: "order/add_to_cart",
+        type: "POST",
+        data: {item_id: itemId},
+        dataType: "html",
+        success: function(data) {
+          console.log(data)
+        }
+      });
+    });
+
+    $(".removeFromCart").on('click', function(event){
+      event.stopPropagation();
+      event.stopImmediatePropagation();
+      var itemId = $('.removeFromCart').data('item-id')
+      $.ajax({
+        url: "order/remove_from_cart",
+        type: "POST",
+        data: {item_id: itemId},
+        dataType: "html",
+        success: function(data) {
+          console.log(data)
+        }
+      });
     });
   });
 </script>
