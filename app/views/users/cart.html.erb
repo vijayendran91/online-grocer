@@ -8,6 +8,7 @@
       <th scope="col">#</th>
       <th scope="col">Item Name</th>
       <th scope="col">Item Price</th>
+      <th scope="col">Quantity</th>
       <th scope="col">Item Image</th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         <th scope="row"><%=i+1%></th>
         <td><%=@items[i][:itm_name] %></td>
         <td><%=@items[i][:itm_price]%></td>
+        <td><%=@item_ids[@items[i][:itm_id]]%></td>
         <td><%= image_tag @items[i].image.url ,class: 'admin-list-image'%></td>
       </tr>
     <%end%>
