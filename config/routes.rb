@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'user/verify_otp', :to=> 'sessions#verify_otp'
   post 'user/verify_otp', :to=> 'sessions#verify_otp'
   delete 'user/logout', :to=> 'sessions#logout'
+  get 'user/cart', :to => 'users#cart'
+
+
   post 'order/add_to_cart', :to => 'orders#add_to_cart'
   post 'order/remove_from_cart', :to=> 'orders#remove_from_cart'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

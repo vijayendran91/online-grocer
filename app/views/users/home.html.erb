@@ -50,14 +50,21 @@
     $(".addToCart").on('click', function(event){
       event.stopPropagation();
       event.stopImmediatePropagation();
-      var itemId = $('.addToCart').data('item-id')
+      debugger
+      var itemId = $(this).attr('data-item-id')
+      debugger
       $.ajax({
         url: "order/add_to_cart",
         type: "POST",
         data: {item_id: itemId},
         dataType: "html",
         success: function(data) {
-          console.log(data)
+          var data = JSON.parse(data);
+          if(data.redirect_url){
+            window.location.replace(data.redirect_url+'?error='+data.error);
+          }
+        },
+        error: function (data) {
         }
       });
     });

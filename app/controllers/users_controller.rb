@@ -67,6 +67,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def cart
+    user = current_user
+    item_ids = user.cart.items
+    @items = Item.where(:itm_id => { '$in': item_ids })
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

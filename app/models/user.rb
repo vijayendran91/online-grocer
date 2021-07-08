@@ -13,6 +13,7 @@ class User
   field :permission, type: Array, default: []
   before_save :user_id_make
   has_secure_password
+  has_one :cart
 
 
   INVENTORY_MANAGER = 'm'

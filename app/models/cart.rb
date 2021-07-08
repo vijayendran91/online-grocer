@@ -5,4 +5,5 @@ class Cart
 
 
   field :items, type: Array, default: []
+  belongs_to :user
 end

@@ -13,7 +13,7 @@
         <%= link_to "Log In", user_login_path, :method => "get", :class => "btn"%>
         <%= link_to "Sign Up", new_user_path, :method => "get", :class => "btn" %>
       <% end %>
-      <%= image_tag 'shopping_cart.png', class: 'shopping-cart'%>
+      <a href="/user/cart"><%= image_tag 'shopping_cart.png', class: 'shopping-cart'%></a>
     </form>
   </div>
 </nav>
