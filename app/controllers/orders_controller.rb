@@ -28,24 +28,19 @@ class OrdersController < ApplicationController
     user = current_user
     response = {}
     if user.nil?
-      binding.pry
       response = {:error => "Please Log in to add/remove items to cart", :redirect_url => '/user/login'}
     else !user.nil?
-      binding.pry
       if user.cart.nil?
-        binding.pry
         response = {:status => 200}
       else
         items = user.cart.items
         if items.key?(params[:item_id])
-          binding.pry
           if (user.cart.items[params[:item_id]] != 0)
             user.cart.items[params[:item_id]] = user.cart.items[params[:item_id]] - 1 if (user.cart.items[params[:item_id]] != 0)
             user.cart.save
           end
           response = {:status => 200}
         else
-          binding.pry
           response = {:status => 200}
         end
       end
