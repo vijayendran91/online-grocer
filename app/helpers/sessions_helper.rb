@@ -16,9 +16,15 @@ module SessionsHelper
   end
 
   def is_admin_logged_in?
-    user = current_user
     result = false
-    result = true if !user.nil? && (user.permission - User::USER_PERMISSIONS).empty?
+    if logged_in?
+      user = current_user
+      User::USER_PERMISSIONS.each do |permission|
+        if user.permission.include? permission
+          result = true
+        end
+      end
+    end
     result
   end
 end

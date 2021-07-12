@@ -20,7 +20,7 @@
       <br>
       <%= form.password_field :password %>
     </div>
-
+    <%= form.hidden_field :admin_login, value: true%>
     <div class="actions">
       <div class="form-btn">
         <%= form.submit "Login"%>

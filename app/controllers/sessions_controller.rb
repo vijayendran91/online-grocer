@@ -5,8 +5,14 @@ class SessionsController < ApplicationController
     begin
       user = User.find_by(:phone => login_data[:phone])
       auth = user.authenticate(login_data[:password])
-      unless auth.nil?
-        redirect_to user_verify_otp_path(:phone => user.phone)
+      if !auth.nil?
+        if !login_data[:admin_login]
+          redirect_to user_verify_otp_path(:phone => user.phone)
+        elsif !auth.nil? && (login_data[:admin_login] == "true")
+          binding.pry
+          log_in user
+          redirect_to qwe_admin_path
+        end
       else
         raise Exceptions::PasswordMismatch.new("Password did not match for the given phone number !")
       end
@@ -62,6 +68,10 @@ class SessionsController < ApplicationController
   def logout
     session.delete(:user_id)
     @current_user = nil
-    redirect_to root_path
+    unless(params[:admin_logout] != "true")
+      redirect_to root_path
+    else
+      redirect_to qwe_admin_path
+    end
   end
 end
