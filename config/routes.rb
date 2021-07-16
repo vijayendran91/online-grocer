@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'order/add_to_cart', :to => 'orders#add_to_cart'
   post 'order/remove_from_cart', :to=> 'orders#remove_from_cart'
   get 'order/checkout', :to=> 'orders#checkout'
+  post 'order/order_confirmation', :to=> 'orders#order_confirmation'
   get 'order/icart', :to=> 'orders#icart'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

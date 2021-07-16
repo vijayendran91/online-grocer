@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   require_relative '../platform/razorpay_application'
   include OrdersApplication
   include RazorpayApplication
+  skip_before_action :verify_authenticity_token, :only => :order_confirmation
   def add_to_cart
     user = current_user
     response = {}

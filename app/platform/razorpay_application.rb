@@ -20,7 +20,7 @@ module RazorpayApplication
         "name": "Online Grocer",
         "description": "Test Transaction",
         :order_id => rp_order["id"],
-        "callback_url": "0.0.0.0:3000",
+        "callback_url": "/order/order_confirmation",
         "prefill": {
             "name": order[:fname],
             "email": "gaurav.kumar@example.com",
