@@ -3,7 +3,6 @@ class Order
 
   field :order_id, type: String
   field :buyer_id, type: String
-  field :items, type: Array
   field :total_price, type: Float
   field :disnt, type: Float
   field :final_price,type: Float
@@ -12,4 +11,6 @@ class Order
   field :amnt_discnt, type: Float
   field :dlvry_addr, type: String
   field :dlvry_agnt,type: String
+  field :cart_id, type: String
+  has_many :item
 end

@@ -67,16 +67,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def cart
-    user = current_user
-    @item_ids = user.cart.items
-    item_ids = []
-    @item_ids.each do |item, quantity|
-      item_ids.push(item)
-    end
-    @items = Item.where(:itm_id => { '$in': item_ids })
-    
-    end
 
   private
     # Use callbacks to share common setup or constraints between actions.

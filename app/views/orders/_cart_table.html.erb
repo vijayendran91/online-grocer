@@ -1,15 +1,13 @@
-<h1>CART</h1>
-<%@items.each do |item|%>
-  <%=item%>
-<%end%>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
       <th scope="col">Item Name</th>
-      <th scope="col">Item Price</th>
-      <th scope="col">Quantity</th>
       <th scope="col">Item Image</th>
+      <th scope="col">Item Price</th>
+      <th scope="col"></th>
+      <th scope="col">Quantity</th>
+
     </tr>
   </thead>
   <tbody>
@@ -17,9 +15,11 @@
       <tr>
         <th scope="row"><%=i+1%></th>
         <td><%=@items[i][:itm_name] %></td>
+        <td><%= image_tag @items[i].image.url ,class: 'admin-list-image', :size => '100x100'%></td>
         <td><%=@items[i][:itm_price]%></td>
+        <td>X</td>
         <td><%=@item_ids[@items[i][:itm_id]]%></td>
-        <td><%= image_tag @items[i].image.url ,class: 'admin-list-image'%></td>
+
       </tr>
     <%end%>
   </tbody>

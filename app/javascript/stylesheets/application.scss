@@ -61,6 +61,17 @@ $nav2-color: #EAFAF1;
   }
 }
 
+.rp-btn{
+  padding-left: 10px;
+  margin-right: 10px;
+  color: white !important;
+  background-color: $base-green;
+  float: right;
+  &:hover{
+    background-color: none !important;
+  }
+}
+
 .navbar-search{
   width: 400px;
   padding-right: 10px;
@@ -126,4 +137,9 @@ $nav2-color: #EAFAF1;
   &:hover{
     background-color: #A9DFBF
   }
+}
+
+.icart{
+  width: 600px;
+  height: 600px;
 }
