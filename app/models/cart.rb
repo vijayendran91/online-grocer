@@ -4,6 +4,7 @@ class Cart
 
 
 
-  field :items, type: Hash, default: {}
-  belongs_to :user
+  field :items, type: Array, default: []
+  field :c_t_pr, type: Float
+  belongs_to :order
 end

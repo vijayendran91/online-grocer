@@ -12,5 +12,6 @@ class Order
   field :dlvry_addr, type: String
   field :dlvry_agnt,type: String
   field :cart_id, type: String
-  has_many :item
+  belongs_to :user
+  has_one :cart
 end

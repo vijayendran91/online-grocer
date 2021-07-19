@@ -11,9 +11,10 @@ class User
   field :password_digest, type: String
   field :otp_session, type: String
   field :permission, type: Array, default: []
+  field :current_order, type: String
   before_save :user_id_make
-  has_secure_password
-  has_one :cart
+  # has_secure_password
+  has_many :orders
 
 
   INVENTORY_MANAGER = 'm'
