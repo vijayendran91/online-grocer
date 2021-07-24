@@ -1,16 +1,19 @@
 class OrdersController < ApplicationController
   require_relative '../platform/orders_application'
   require_relative '../platform/razorpay_application'
+
   include OrdersApplication
   include RazorpayApplication
+
   skip_before_action :verify_authenticity_token, :only => :order_confirmation
+
   def add_to_cart
     user = current_user
     response = {}
     if user.nil?
       response = {:error => "Please Log in to add/remove items to cart", :redirect_url => '/user/login'}
     elsif !user.nil?
-      add_item_to_cart(user, params)
+      response = add_item_to_cart(user, params)
     end
     render :json=> response
   end
@@ -21,20 +24,7 @@ class OrdersController < ApplicationController
     if user.nil?
       response = {:error => "Please Log in to add/remove items to cart", :redirect_url => '/user/login'}
     else !user.nil?
-      if user.cart.nil?
-        response = {:status => 200}
-      else
-        items = user.cart.items
-        if items.key?(params[:item_id])
-          if (user.cart.items[params[:item_id]] != 0)
-            user.cart.items[params[:item_id]] = user.cart.items[params[:item_id]] - 1 if (user.cart.items[params[:item_id]] != 0)
-            user.cart.save
-          end
-          response = {:status => 200}
-        else
-          response = {:status => 200}
-        end
-      end
+      response = remove_item_from_cart(user, params[:item_id])
     end
     render :json=> response
   end

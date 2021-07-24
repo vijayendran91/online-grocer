@@ -29,7 +29,7 @@ module OrdersApplication
   end
 
   def add_item_to_cart(user, params)
-    binding.pry
+    response = {:error => "Something went wrong", :redirect_url => root_path}
     if user.current_order.nil?
       order = create_order(user)
       user.orders[0] = order
@@ -46,11 +46,14 @@ module OrdersApplication
         cart = current_order.cart
         if cart[:items].has_key?(params[:item_id].to_sym)
           add_existing_item_to_cart(params[:item_id], cart)
+          response = {:status => 200}
         else
           add_new_item_in_cart(params[:item_id], cart)
+          response = {:status => 200}
         end
       end
     end
+    response
   end
 
 
@@ -85,5 +88,41 @@ module OrdersApplication
       cart.each_item_price[item_id] += item[:itm_price]
       cart.save
     end
+  end
+
+  def remove_item_from_cart(user,item_id)
+    response = {:error => "Something went wrong", :redirect_url => root_path}
+    unless user.current_order.nil?
+      current_order_id = user.current_order
+      current_order = Order.find_by(:order_id => current_order_id)
+      item = Item.find_by(:itm_id => item_id)
+      if(current_order[:order_status]==Order::ORDER_CREATED.to_s)
+        cart = current_order.cart
+        if cart.items.has_key?(item_id)
+          if cart.items[item_id] == 1
+            remove_last_element_from_cart(item, cart)
+            response = {:status => 200}
+          else
+            remove_existing_item_from_cart(item, cart)
+            response = {:status => 200}
+          end
+        end
+      end
+    end
+    response
+  end
+
+  def remove_existing_item_from_cart(item, cart)
+    cart.items[item[:itm_id]] -= 1
+    cart.each_item_price[item[:itm_id]] -= item[:itm_price]
+    cart[:cart_total_price] -=  item[:itm_price]
+    cart.save
+  end
+
+  def remove_last_element_from_cart(item, cart)
+    cart.items = cart.items.except(item[:itm_id])
+    cart.each_item_price = cart.each_item_price.except(item[:itm_id])
+    cart[:cart_total_price] -=  item[:itm_price]
+    cart.save
   end
 end
