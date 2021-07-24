@@ -3,8 +3,9 @@ class Cart
   include Mongoid::Timestamps
 
 
+  field :items, type: Hash, default: {}
+  field :cart_total_price, type: Float, default: 0.0
+  field :each_item_price,type: Hash, default: {}
+  belongs_to :order, :optional => true
 
-  field :items, type: Array, default: []
-  field :c_t_pr, type: Float
-  belongs_to :order
 end

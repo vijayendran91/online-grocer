@@ -28,5 +28,62 @@ module OrdersApplication
     total_price
   end
 
+  def add_item_to_cart(user, params)
+    binding.pry
+    if user.current_order.nil?
+      order = create_order(user)
+      user.orders[0] = order
+      cart = Cart.new(:order_id => order[:order_id])
+      cart = add_new_item_in_cart(params[:item_id], cart)
+    else
+      current_order = nil
+      user.orders.each do |order|
+        if user.current_order.to_s == order[:order_id].to_s
+          current_order = order
+        end
+      end
+      if(current_order[:order_status]==Order::ORDER_CREATED.to_s)
+        cart = current_order.cart
+        if cart[:items].has_key?(params[:item_id].to_sym)
+          add_existing_item_to_cart(params[:item_id], cart)
+        else
+          add_new_item_in_cart(params[:item_id], cart)
+        end
+      end
+    end
+  end
 
+
+  def create_order(user)
+    new_order = Order.new(:user_id => user[:user_id], :order_status => Order::ORDER_CREATED)
+    user.orders.push(new_order)
+    user.current_order = new_order[:order_id]
+    new_order.save
+    user.save
+    new_order
+  end
+
+  def include_total_price_in_cart(item, cart)
+    current_price = cart.cart_total_price
+    current_price += item[:itm_price]
+    current_price
+  end
+
+  def add_new_item_in_cart(item_id, cart)
+    item = Item.find_by(:itm_id => item_id)
+    cart.cart_total_price = include_total_price_in_cart(item,cart)
+    cart.each_item_price[item_id] = item[:itm_price]
+    cart.items[item_id] = 1
+    cart.save
+  end
+
+  def add_existing_item_to_cart(item_id, cart)
+    item = Item.find_by(:itm_id => item_id)
+    if cart.items.has_key?(item_id) && cart.each_item_price.has_key?(item_id)
+      cart.items[item_id] += 1
+      cart.cart_total_price = include_total_price_in_cart(item,cart)
+      cart.each_item_price[item_id] += item[:itm_price]
+      cart.save
+    end
+  end
 end

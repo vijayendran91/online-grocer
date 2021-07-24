@@ -10,21 +10,7 @@ class OrdersController < ApplicationController
     if user.nil?
       response = {:error => "Please Log in to add/remove items to cart", :redirect_url => '/user/login'}
     elsif !user.nil?
-      if user.cart.nil?
-        user.cart = Cart.new(:items => {params[:item_id] => 1})
-        user.cart.save
-        response = {:status => 200}
-      else
-        items = user.cart.items
-        if items.key?(params[:item_id])
-          user.cart.items[params[:item_id]] = user.cart.items[params[:item_id]] + 1
-          user.cart.save
-        else
-          user.cart.items[params[:item_id]] = 1
-          user.cart.save
-        end
-        response = {:status => 200}
-      end
+      add_item_to_cart(user, params)
     end
     render :json=> response
   end

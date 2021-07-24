@@ -13,7 +13,7 @@ class User
   field :permission, type: Array, default: []
   field :current_order, type: String
   before_save :user_id_make
-  # has_secure_password
+  has_secure_password
   has_many :orders
 
 
