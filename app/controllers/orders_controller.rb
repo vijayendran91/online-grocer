@@ -37,7 +37,9 @@ class OrdersController < ApplicationController
       if !(current_order.cart).nil?
         cart = current_order.cart
       end
+      @img_size = '100x100'
       @item_ids = cart.items
+      @item_total_price = cart.each_item_price
       @items = get_items_from_cart(cart)
     else
       redirect_to user_login_path(:error => "Please log in to add items to cart")
@@ -51,7 +53,9 @@ class OrdersController < ApplicationController
     if !(current_order.cart).nil?
       cart = current_order.cart
     end
+    @img_size = '50x50'
     @item_ids = cart.items
+    @item_total_price = cart.each_item_price
     @items = get_items_from_cart(cart)
     render :partial => 'cart_table', :layout => false
   end
