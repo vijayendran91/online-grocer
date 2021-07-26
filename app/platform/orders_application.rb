@@ -29,7 +29,7 @@ module OrdersApplication
   end
 
   def add_item_to_cart(user, params)
-    response = {:error => "Something went wrong", :redirect_url => root_path}
+    response = {:error => "Something went wrong"}
     if user.current_order.nil?
       order = create_order(user)
       user.orders[0] = order
@@ -44,12 +44,13 @@ module OrdersApplication
       end
       if(current_order[:order_status]==Order::ORDER_CREATED.to_s)
         cart = current_order.cart
+        item = Item.find_by(:itm_id => params[:item_id])
         if cart[:items].has_key?(params[:item_id].to_sym)
-          add_existing_item_to_cart(params[:item_id], cart)
-          response = {:status => 200}
+          add_existing_item_to_cart(item, cart)
+          response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         else
-          add_new_item_in_cart(params[:item_id], cart)
-          response = {:status => 200}
+          add_new_item_in_cart(item, cart)
+          response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         end
       end
     end
@@ -72,7 +73,8 @@ module OrdersApplication
     current_price
   end
 
-  def add_new_item_in_cart(item_id, cart)
+  def add_new_item_in_cart(item, cart)
+    item_id = item[:itm_id]
     item = Item.find_by(:itm_id => item_id)
     cart.cart_total_price = include_total_price_in_cart(item,cart)
     cart.each_item_price[item_id] = item[:itm_price]
@@ -80,8 +82,8 @@ module OrdersApplication
     cart.save
   end
 
-  def add_existing_item_to_cart(item_id, cart)
-    item = Item.find_by(:itm_id => item_id)
+  def add_existing_item_to_cart(item, cart)
+    item_id = item[:itm_id]
     if cart.items.has_key?(item_id) && cart.each_item_price.has_key?(item_id)
       cart.items[item_id] += 1
       cart.cart_total_price = include_total_price_in_cart(item,cart)
@@ -91,7 +93,7 @@ module OrdersApplication
   end
 
   def remove_item_from_cart(user,item_id)
-    response = {:error => "Something went wrong", :redirect_url => root_path}
+    response = {:error => "Something went wrong"}
     unless user.current_order.nil?
       current_order_id = user.current_order
       current_order = Order.find_by(:order_id => current_order_id)
@@ -101,11 +103,13 @@ module OrdersApplication
         if cart.items.has_key?(item_id)
           if cart.items[item_id] == 1
             remove_last_element_from_cart(item, cart)
-            response = {:status => 200}
+            response = {:status => 200, :message => "#{item[:itm_name]} removed from cart."}
           else
             remove_existing_item_from_cart(item, cart)
-            response = {:status => 200}
+            response = {:status => 200, :message => "#{item[:itm_name]} reduced by 1 count"}
           end
+        else
+          response = {:error => "#{item[:itm_name]} not in cart"}
         end
       end
     end

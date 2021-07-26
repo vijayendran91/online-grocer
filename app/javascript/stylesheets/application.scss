@@ -143,3 +143,11 @@ $nav2-color: #EAFAF1;
   width: 600px;
   height: 600px;
 }
+
+#cartMessage {
+    position: fixed;
+    left: 30%;
+    top: 5%;
+    width: 50%;
+    z-index: 999;
+}
