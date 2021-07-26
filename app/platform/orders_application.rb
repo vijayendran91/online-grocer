@@ -10,15 +10,6 @@ module OrdersApplication
     return items
   end
 
-  def submit_order(items, item_qt_in_cart, buyer)
-    order = Order.new()
-    order[:buyer_id]=buyer[:user_id]
-    order[:buyer_fname]= buyer[:fname]
-    order.item = items
-    order[:total_price] = get_total_price(items, item_qt_in_cart)
-    order[:cart_id] = buyer.cart[:id].to_s
-    return order
-  end
 
   def get_total_price(items, item_qt)
     total_price = 0.0
@@ -35,6 +26,7 @@ module OrdersApplication
       user.orders[0] = order
       cart = Cart.new(:order_id => order[:order_id])
       cart = add_new_item_in_cart(params[:item_id], cart)
+      update_order_price_from_cart(cart, order)
     else
       current_order = nil
       user.orders.each do |order|
@@ -47,9 +39,11 @@ module OrdersApplication
         item = Item.find_by(:itm_id => params[:item_id])
         if cart[:items].has_key?(params[:item_id].to_sym)
           add_existing_item_to_cart(item, cart)
+          update_order_price_from_cart(cart, current_order)
           response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         else
           add_new_item_in_cart(item, cart)
+          update_order_price_from_cart(cart, current_order)
           response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         end
       end
@@ -65,6 +59,10 @@ module OrdersApplication
     new_order.save
     user.save
     new_order
+  end
+
+  def update_order_price_from_cart(cart, order)
+    order.update(:total_price => cart.cart_total_price)
   end
 
   def include_total_price_in_cart(item, cart)
@@ -102,9 +100,11 @@ module OrdersApplication
         if cart.items.has_key?(item_id)
           if cart.items[item_id] == 1
             remove_last_element_from_cart(item, cart)
+            update_order_price_from_cart(cart, current_order)
             response = {:status => 200, :message => "#{item[:itm_name]} removed from cart."}
           else
             remove_existing_item_from_cart(item, cart)
+            update_order_price_from_cart(cart, current_order)
             response = {:status => 200, :message => "#{item[:itm_name]} reduced by 1 count"}
           end
         else

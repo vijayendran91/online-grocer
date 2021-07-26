@@ -58,13 +58,13 @@ class OrdersController < ApplicationController
 
   def checkout
     user = current_user
-    cart = user.cart
-    @item_ids = user.cart.items
-    @items = get_items_from_cart(user.cart)
+    @order = get_current_order(user)
+    cart = @order.cart
+    @item_ids = cart.items
+    @items = get_items_from_cart(cart)
     razor = RazorpayGateway.new
-    order = submit_order(@items,@item_ids, user)
-    rp_order = razor.create_rp_order(order[:total_price], "TEST")
+    rp_order = razor.create_rp_order(@order[:total_price], "TEST")
     rp_order = rp_order.attributes
-    @options = razor.create_options(rp_order, order)
+    @options = razor.create_options(rp_order, @order)
   end
 end
