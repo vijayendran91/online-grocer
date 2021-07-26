@@ -92,11 +92,10 @@ module OrdersApplication
     end
   end
 
-  def remove_item_from_cart(user,item_id)
+  def remove_item_from_cart(user, item_id)
     response = {:error => "Something went wrong"}
     unless user.current_order.nil?
-      current_order_id = user.current_order
-      current_order = Order.find_by(:order_id => current_order_id)
+      current_order = get_current_order(user)
       item = Item.find_by(:itm_id => item_id)
       if(current_order[:order_status]==Order::ORDER_CREATED.to_s)
         cart = current_order.cart
@@ -128,5 +127,16 @@ module OrdersApplication
     cart.each_item_price = cart.each_item_price.except(item[:itm_id])
     cart[:cart_total_price] -=  item[:itm_price]
     cart.save
+  end
+
+  def get_current_order(user)
+    current_order_id = user.current_order
+    temp =  nil
+    current_order = nil
+    if !current_order_id.nil?
+      temp = Order.find_by(:order_id => current_order_id)
+    end
+    current_order= temp if (temp[:order_status]==Order::ORDER_CREATED.to_s)
+    current_order
   end
 end

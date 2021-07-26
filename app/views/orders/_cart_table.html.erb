@@ -1,17 +1,18 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Item Name</th>
-      <th scope="col">Item Image</th>
-      <th scope="col">Item Price</th>
-      <th scope="col"></th>
-      <th scope="col">Quantity</th>
+<%if !(@items.empty?)%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item Name</th>
+        <th scope="col">Item Image</th>
+        <th scope="col">Item Price</th>
+        <th scope="col"></th>
+        <th scope="col">Quantity</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <%(0..@items.size-1).each do |i| %>
+      </tr>
+    </thead>
+    <tbody>
+      <%(0..@items.size-1).each do |i| %>
       <tr>
         <th scope="row"><%=i+1%></th>
         <td><%=@items[i][:itm_name] %></td>
@@ -19,8 +20,11 @@
         <td><%=@items[i][:itm_price]%></td>
         <td>X</td>
         <td><%=@item_ids[@items[i][:itm_id]]%></td>
-
       </tr>
-    <%end%>
-  </tbody>
-</table>
+      <%end%>
+    </tbody>
+  </table>
+  <%= link_to 'Checkout', order_checkout_path%>
+<%else%>
+
+<%end%>

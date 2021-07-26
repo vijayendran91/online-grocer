@@ -30,15 +30,29 @@ class OrdersController < ApplicationController
   end
 
   def cart
-    user = current_user
-    @item_ids = user.cart.items
-    @items = get_items_from_cart(user.cart)
+    if logged_in?
+      user = current_user
+      current_order = get_current_order(user)
+      cart = nil
+      if !(current_order.cart).nil?
+        cart = current_order.cart
+      end
+      @item_ids = cart.items
+      @items = get_items_from_cart(cart)
+    else
+      redirect_to user_login_path(:error => "Please log in to add items to cart")
+    end
   end
 
   def icart
     user = current_user
-    @item_ids = user.cart.items
-    @items = get_items_from_cart(user.cart)
+    current_order = get_current_order(user)
+    cart = nil
+    if !(current_order.cart).nil?
+      cart = current_order.cart
+    end
+    @item_ids = cart.items
+    @items = get_items_from_cart(cart)
     render :partial => 'cart_table', :layout => false
   end
 
