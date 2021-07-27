@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   include OrdersApplication
   include RazorpayApplication
 
-  skip_before_action :verify_authenticity_token, :only => :order_confirmation
+  skip_before_action :verify_authenticity_token, :only => :submit_order
 
   def add_to_cart
     user = current_user
@@ -34,13 +34,15 @@ class OrdersController < ApplicationController
       user = current_user
       current_order = get_current_order(user)
       cart = nil
-      if !(current_order.cart).nil?
+      if !current_order.nil? && !(current_order.cart).nil?
         cart = current_order.cart
+        @img_size = '100x100'
+        @item_ids = cart.items
+        @item_total_price = cart.each_item_price
+        @items = get_items_from_cart(cart)
+      else
+        redirect_to root_path
       end
-      @img_size = '100x100'
-      @item_ids = cart.items
-      @item_total_price = cart.each_item_price
-      @items = get_items_from_cart(cart)
     else
       redirect_to user_login_path(:error => "Please log in to add items to cart")
     end
@@ -69,6 +71,17 @@ class OrdersController < ApplicationController
     razor = RazorpayGateway.new
     rp_order = razor.create_rp_order(@order[:total_price], "TEST")
     rp_order = rp_order.attributes
+    @order.update(:rp_order_id => rp_order["id"])
     @options = razor.create_options(rp_order, @order)
   end
+
+  def submit_order
+    user = current_user
+    order = get_current_order(user)
+    razor = RazorpayGateway.new
+    if razor.rp_signature_verified?(order, params)
+      render :submit_order
+    end
+  end
+
 end

@@ -15,6 +15,7 @@ class Order
   field :dlvry_agnt,type: String
   field :cart_id, type: String
   field :order_status, type: String
+  field :rp_order_id, type: String
   belongs_to :user
   has_one :cart
 
@@ -26,6 +27,7 @@ class Order
   ORDER_CREATED = :oc
   ORDER_PLACED = :op
   PAYMENT_INITIALIZED = :pi
+  RP_SIGNATURE_VERIFIED = :rsv
   PAYMENT_FAILURE = :pf
   PAYMENT_SUCCESS = :ps
   PACKING_ORDER = :po
@@ -37,6 +39,7 @@ class Order
   ORDER_STATUS={ORDER_CREATED => "Order Created",
                    ORDER_PLACED => "Order Placed",
                    PAYMENT_INITIALIZED => "Payment Initialized",
+                   RP_SIGNATURE_VERIFIED => "Razorpay Signature Verified",
                    PAYMENT_FAILURE => "Payment Failure",
                    PAYMENT_SUCCESS => "Payment Success",
                    PACKING_ORDER => "Packing Order",
@@ -44,7 +47,7 @@ class Order
                    DELIVERED => "Delivered",
                    COMPLETE => "Complete"
                   }
-  ORDER_STATUS_LIST=["Order Created", "Order Placed","Payment Initialized","Payment Failure","Payment Success","Packing Order","Out For Delivery","Delivered","Complete"]
+  ORDER_STATUS_LIST=["Order Created", "Order Placed","Payment Initialized","Payment Failure","Payment Success","Packing Order","Out For Delivery","Delivered","Complete","Razorpay Signature Verified"]
   ORDER_STATUS_REV = ORDER_STATUS.invert
 
 end

@@ -139,4 +139,8 @@ module OrdersApplication
     current_order= temp if (temp[:order_status]==Order::ORDER_CREATED.to_s)
     current_order
   end
+
+  def change_order_status(order, status)
+    order.update(:order_status => status)
+  end
 end

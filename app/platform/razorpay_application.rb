@@ -1,11 +1,20 @@
 module RazorpayApplication
   class RazorpayGateway
+    include OrdersApplication
+
     RAZORPAY_KEY_ID = "rzp_test_skUYRxPAvmNgCW"
     RAZORPAY_KEY_SECRET = "wlmFosZGV6kZ3OpuUPXiIaqw"
     def initialize
       Razorpay.setup(RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET)
     end
 
+    def self.get_razorpay_id
+      RAZORPAY_KEY_ID
+    end
+
+    def self.get_razorpay_secret
+      RAZORPAY_KEY_SECRET
+    end
 
     def create_rp_order(total_price, order_id)
       total_price = (total_price.to_i * 100)
@@ -35,6 +44,28 @@ module RazorpayApplication
       }
       return options
     end
+
+    def rp_signature_verified?(order, rp_params)
+      result = false
+      rp_order_id = order[:rp_order_id]
+      digest = OpenSSL::Digest.new('sha256')
+      hash  = OpenSSL::HMAC.hexdigest(digest,
+                                      RazorpayGateway.get_razorpay_secret(),
+                                      rp_order_id+"|"+rp_params['razorpay_payment_id'])
+
+      if(hash == rp_params["razorpay_signature"])
+        change_order_status(order, Order::RP_SIGNATURE_VERIFIED)
+      else
+        change_order_status(order, Order::RP_SIGNATURE_VERIFIED)
+      end
+
+      if (order[:status] == Order::RP_SIGNATURE_VERIFIED.to_s)
+        result = true
+      end
+
+      result
+    end
+
 
   end
 end
