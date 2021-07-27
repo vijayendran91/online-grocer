@@ -27,5 +27,7 @@
   </table>
   <%= link_to 'Checkout', order_checkout_path%>
 <%else%>
-
+  <div class="empty_cart_holder">
+    <%=image_tag "empty_cart.png",:class => "empty_cart", :size => @img_size%>
+  </div>
 <%end%>

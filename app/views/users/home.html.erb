@@ -37,9 +37,10 @@
   </div>
 </div>
 
-
-<div data-spy="scroll" data-target="#navbar2" data-offset="0">
-  <%=render :partial => 'item_cards', :locals => {:item_ctg => @item_ctg}%>
+<div class="item-cards">
+  <div data-spy="scroll" data-target="#navbar2" data-offset="0">
+    <%=render :partial => 'item_cards', :locals => {:item_ctg => @item_ctg}%>
+  </div>
 </div>
 <script>
   $(document).ready(function(){

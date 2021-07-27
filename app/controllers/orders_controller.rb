@@ -34,14 +34,16 @@ class OrdersController < ApplicationController
       user = current_user
       current_order = get_current_order(user)
       cart = nil
+      @img_size = '350x300'
+      @item_ids = nil
+      @item_total_price = nil
+      @items = []
       if !current_order.nil? && !(current_order.cart).nil?
         cart = current_order.cart
         @img_size = '100x100'
         @item_ids = cart.items
         @item_total_price = cart.each_item_price
         @items = get_items_from_cart(cart)
-      else
-        redirect_to root_path
       end
     else
       redirect_to user_login_path(:error => "Please log in to add items to cart")

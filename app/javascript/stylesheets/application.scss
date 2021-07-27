@@ -156,3 +156,13 @@ $nav2-color: #EAFAF1;
   width: 50%;
   height: 50%;
 }
+
+.empty_cart_holder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.2
+}
+.empty_cart_holder .empty_cart{
+  margin-top: 100px;
+}
