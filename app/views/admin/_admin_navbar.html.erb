@@ -2,8 +2,10 @@
   <%= link_to "Online Grocers", "/qwe/admin", :class=> "navbar-brand admin-custom-navbar-brand"%>
   <form class="form-inline admin-navbar-form">
     <%if is_admin_logged_in? %>
-      <%= link_to "Items", "/qwe/admin/item_list", :method => "get", :class => "btn admin-navbar-btn" %>
+      <%= link_to "Items", "/qwe/admin/items_list", :method => "get", :class => "btn admin-navbar-btn" %>
+      <%= link_to "Orders", "/qwe/admin/orders_list", :method => "get", :class => "btn admin-navbar-btn" %>
       <%= link_to "Log Out", user_logout_path(:admin_logout => true), :method => "delete", :class => "btn admin-navbar-btn" %>
+
     <%end%>
   </form>
 

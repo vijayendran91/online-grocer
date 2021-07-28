@@ -5,6 +5,7 @@ class Order
 
   field :order_id, type: String
   field :buyer_id, type: String
+  field :buyer_fname, type: String
   field :total_price, type: Float
   field :disnt, type: Float
   field :final_price,type: Float

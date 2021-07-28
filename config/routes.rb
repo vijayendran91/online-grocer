@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   #Admin
   get 'qwe/admin', :to=> 'admin#admin_home'
-  get 'qwe/admin/item_list', :to=> 'admin#item_list'
+  get 'qwe/admin/items_list', :to=> 'admin#items_list'
   post 'qwe/admin/new_item', :to=> 'admin#new_item'
+  get 'qwe/admin/orders_list', :to => 'admin#orders_list'
 end

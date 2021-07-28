@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Order Id</th>
+      <th scope="col">Buyer Id</th>
+      <th scope="col">Buyer Name</th>
+      <th scope="col">Order Status</th>
+      <th scope="col">Items</th>
+      <th scope="col">Delivery Address</th>
+      <th scope="col">Razorpay Order Id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%(0..@orders.size-1).each do |i|%>
+      <tr>
+        <td><%=i+1%></td>
+        <td><%=@orders[i][:order_id]%></td>
+        <td></td>
+        <td><%=@orders[i][:buyer_fname]%></td>
+        <td><%=@orders[i][:order_status]%></td>
+        <td>
+          <%(@orders[i].cart.items.first(5)).each do |k,v|%>
+            <%=k%>
+            <br>
+          <%end%>
+        </td>
+        <td><%=@orders[i][:dlvry_addr]%></td>
+        <td><%=@orders[i][:rp_order_id]%></td>
+      <tr>
+    <%end%>
+  </tbody>
+</table>

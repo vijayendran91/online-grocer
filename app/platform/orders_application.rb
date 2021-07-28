@@ -25,7 +25,7 @@ module OrdersApplication
       order = create_order(user)
       user.orders[0] = order
       cart = Cart.new(:order_id => order[:order_id])
-      cart = add_new_item_in_cart(params[:item_id], cart)
+      cart = add_new_item_in_cart(nil, params[:item_id], cart)
       update_order_price_from_cart(cart, order)
     else
       current_order = nil
@@ -42,7 +42,7 @@ module OrdersApplication
           update_order_price_from_cart(cart, current_order)
           response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         else
-          add_new_item_in_cart(item, cart)
+          add_new_item_in_cart(item, nil, cart)
           update_order_price_from_cart(cart, current_order)
           response = {:status => 200, :message => "#{item[:itm_name]} added to cart"}
         end
@@ -71,13 +71,17 @@ module OrdersApplication
     current_price
   end
 
-  def add_new_item_in_cart(item, cart)
-    item_id = item[:itm_id]
-    item = Item.find_by(:itm_id => item_id)
-    cart.cart_total_price = include_total_price_in_cart(item,cart)
+  def add_new_item_in_cart(item, item_id, cart)
+    if item.nil? && item_id
+      item = Item.find_by(:itm_id => item_id)
+    else
+      item_id = item[:itm_id]
+    end
+    cart.cart_total_price = include_total_price_in_cart(item, cart)
     cart.each_item_price[item_id] = item[:itm_price]
     cart.items[item_id] = 1
     cart.save
+    cart
   end
 
   def add_existing_item_to_cart(item, cart)
@@ -136,11 +140,14 @@ module OrdersApplication
     if !current_order_id.nil?
       temp = Order.find_by(:order_id => current_order_id)
     end
-    current_order= temp if (temp[:order_status]==Order::ORDER_CREATED.to_s)
+    current_order= temp if (temp && temp[:order_status]==Order::ORDER_CREATED.to_s)
     current_order
   end
 
   def change_order_status(order, status)
+    if(order[:order_status]==Order::ORDER_CREATED.to_s)
+      order.user.update(:current_order => nil)
+    end
     order.update(:order_status => status)
   end
 end

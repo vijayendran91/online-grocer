@@ -1,9 +1,9 @@
 class AdminController < ApplicationController
   def admin_home
-    
+
   end
 
-  def item_list
+  def items_list
     @items = Item.all
     (0..@items.size-1).each do |i|
       @items[i][:itm_ctg] = Item::ITEM_CATAGORIES[@items[i][:itm_ctg].to_sym]
@@ -24,5 +24,10 @@ class AdminController < ApplicationController
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def orders_list
+    @orders = Order.all
   end
 end
