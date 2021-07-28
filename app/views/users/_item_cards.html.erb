@@ -4,9 +4,9 @@
     <h4><%=Item::ITEM_CATAGORIES[itm_ctg]%></h4>
     <div style="display: flex;">
       <div style="display: flex;">
-        <%item_data.each do |item|%>
+        <%item_data.first(5).each do |item|%>
           <div class="card item-card" style="width: 10rem;">
-            <%= image_tag item.image.url%>
+            <%= image_tag item.image.url,:class=>"item-card-img", :size=> "100x100"%>
             <div class="card-body">
               <h7 class="card-title"><%=item[:itm_name]%></h7>
               <div class="col">
