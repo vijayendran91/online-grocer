@@ -17,7 +17,7 @@ class AdminController < ApplicationController
     @item = Item.new(params[:new_item])
     respond_to do |format|
       if @item.save
-        format.html { redirect_to qwe_admin_item_list_path, notice: "Item was successfully created." }
+        format.html { redirect_to qwe_admin_items_list_path, notice: "Item was successfully created." }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new, status: :unprocessable_entity }

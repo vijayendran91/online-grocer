@@ -1,0 +1,129 @@
+<h1>Address Book</h1>
+<input type="button" id = "newAddress" value="New Address" class = "btn new_address_btn">
+<div id="addressList">
+  <table class="table table-striped">
+    <tbody>
+      <%@addresses.each do |address|%>
+      <tr>
+        <td>
+          <%=address[:full_name]%><br>
+          <%=address[:street1]%><br>
+          <%=address[:area]%><br>
+          <%=address[:district]%><br>
+          <%=address[:pin]%><br>
+          <%=address[:state]%><br>
+          <%=address[:contact_number]%>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>
+<div class="spinner-border text-success" id="addressSpinner" role="status">
+  <span class="sr-only"></span>
+</div>
+
+<div id="newAddressForm">
+  <div class="custom-form">
+    <%= form_for(:new_address, :url=> user_new_address_path, :remote => true) do |form| %>
+      <% if @new_address.errors.any? %>
+        <div class="alert alert-danger">
+          <h3><%= pluralize(@new_address.errors.count, "Error") %> :</h3>
+          <ul>
+            <% @new_address.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label :"Full Name" %>
+        <br>
+        <%= form.text_field :full_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Street 1" %>
+        <br>
+        <%= form.text_field :street1 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Street 2" %>
+        <br>
+        <%= form.text_field :street2 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Area" %>
+        <br>
+        <%= form.text_field :area %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"District" %>
+        <br>
+        <%= form.text_field :district %>
+      </div>
+
+
+      <div class="field">
+        <%= form.label :"State" %>
+        <br>
+        <%= form.text_field :state %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Pin Code" %>
+        <br>
+        <%= form.text_field :pin %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Contact Phone Number" %>
+        <br>
+        <%= form.text_field :contact_number %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Landmark" %>
+        <br>
+        <%= form.text_field :landmark %>
+      </div>
+
+      <div class="actions" id="newAddressFormBtn">
+          <%= form.submit "Submit", :class=>"btn new_address_btn " %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<script src="https://malsup.github.io/jquery.blockUI.js"></script>
+<script>
+  $(document).ready(function(){
+    $('#newAddressForm').hide();
+    $('#addressSpinner').hide();
+    $('#newAddress').click(function(){
+      $('#addressList').toggle();
+      $('#newAddressForm').toggle();
+      $('#newAddress').hide();
+    });
+    $('#newAddressFormBtn').click(function(){
+      $("#newAddressForm").css("pointer-events","none");
+      $("#newAddressForm").css("filter","blur(5px)");
+      $('#addressSpinner').show();
+      setInterval(function(){
+        $("#newAddressForm").css("pointer-events","all");
+        $("#newAddressForm").css("filter","blur(0px)");
+        $('#addressSpinner').hide();
+        location.reload();
+      },3000);
+
+    })
+  });
+  $(document).ajaxStart(function(){
+    debugger;
+    $('#spinner').show();
+  });
+
+</script>

@@ -15,6 +15,7 @@ class User
   before_save :user_id_make
   has_secure_password
   has_many :orders
+  has_many :addresses
 
 
   INVENTORY_MANAGER = 'm'

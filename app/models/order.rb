@@ -1,6 +1,7 @@
 class Order
   include Mongoid::Document
-
+  include Mongoid::Timestamps
+  
   before_save :order_id_make
 
   field :order_id, type: String

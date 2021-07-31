@@ -8,8 +8,9 @@ Rails.application.routes.draw do
   post 'user/verify_otp', :to=> 'sessions#verify_otp'
   delete 'user/logout', :to=> 'sessions#logout'
 
-
+  get 'user/account_settings', :to => 'users#account_settings'
   get 'user/cart', :to => 'orders#cart'
+  post 'user/new_address', :to=> 'users#new_address'
   post 'order/add_to_cart', :to => 'orders#add_to_cart'
   post 'order/remove_from_cart', :to=> 'orders#remove_from_cart'
   get 'order/checkout', :to=> 'orders#checkout'

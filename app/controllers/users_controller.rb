@@ -53,7 +53,7 @@ class UsersController < ApplicationController
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render :json=>  @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,6 +64,23 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def account_settings
+    @addresses = current_user.addresses
+    @new_address = Address.new
+  end
+
+  def new_address
+    respond_to do |format|
+      @address = Address.new(params.require(:new_address).permit!)
+      @address[:user] = current_user
+      if(@address.save)
+        format.json { render :json=>  @address, status: "200" }
+      else
+        format.json { render :json=>  @address.errors, status: "200" }
+      end
     end
   end
 

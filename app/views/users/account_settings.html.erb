@@ -1,0 +1,39 @@
+<div class="accountSettings">
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'personalDetails')" id="defaultOpen">Personal Details</button>
+    <button class="tablinks" onclick="openCity(event, 'addressBook')">Address Books</button>
+    <button class="tablinks" onclick="openCity(event, 'orders')">Orders</button>
+  </div>
+
+  <div id="personalDetails" class="tabcontent">
+    <h2>Personal Details</h2>
+    <p>View/Edit your personal details here.</p>
+  </div>
+
+  <div id="addressBook" class="tabcontent">
+    <%=render :partial => 'users/account_settings/address_book'%>
+  </div>
+
+  <div id="orders" class="tabcontent">
+    <h3>Orders</h3>
+    <p>View/Edit your orders here.</p>
+  </div>
+</div>
+
+<script>
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+  // Get the element with id="defaultOpen" and click on it
+   document.getElementById("defaultOpen").click();
+</script>
