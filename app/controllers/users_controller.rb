@@ -77,9 +77,9 @@ class UsersController < ApplicationController
       @address = Address.new(params.require(:new_address).permit!)
       @address[:user] = current_user
       if(@address.save)
-        format.json { render :json=>  @address, status: "200" }
+        format.json { render :json=>  @address, status: 200 }
       else
-        format.json { render :json=>  @address.errors, status: "200" }
+        format.json { render :json=>  @address.errors, status: 422 }
       end
     end
   end

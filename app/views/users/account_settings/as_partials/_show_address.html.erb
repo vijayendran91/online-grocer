@@ -1,0 +1,20 @@
+<input type="button" id = "newAddress" value="New Address" class = "btn new_address_btn">
+<div id="addressList">
+  <table class="table table-striped">
+    <tbody>
+      <%@addresses.each do |address|%>
+      <tr>
+        <td>
+          <%=address[:full_name]%><br>
+          <%=address[:street1]%><br>
+          <%=address[:area]%><br>
+          <%=address[:district]%><br>
+          <%=address[:pin]%><br>
+          <%=address[:state]%><br>
+          <%=address[:contact_number]%>
+        </td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</div>

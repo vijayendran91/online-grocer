@@ -1,6 +1,6 @@
 class Address
   include Mongoid::Document
-  # validates :phone, :presence => true, :length => {:is => 10}
+  validates :street1, :full_name, :contact_number, :area, :district, :state, :presence => true
   # validates_uniqueness_of :phone
   before_save :addr_id_make
 

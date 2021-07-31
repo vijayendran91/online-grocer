@@ -178,6 +178,9 @@ $nav2-color: #EAFAF1;
 .tab {
   float: left;
   border: 1px solid #ccc;
+  height: 302px !important;
+  width: 202px !important;
+  box-sizing: inherit !important;
   background-color: $base-green;
   width: 30%;
   height: 300px;

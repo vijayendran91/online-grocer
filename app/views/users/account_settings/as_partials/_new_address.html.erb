@@ -1,0 +1,70 @@
+<div id="newAddressForm">
+  <div class="custom-form">
+    <%= form_for(:new_address, :url=> user_new_address_path, html: { id: "newAddressForm1" }, :remote => true) do |form| %>
+      <div class="alert alert-danger" id="errorBlock">
+        <h3 id="errorBlock1"></h3>
+        <ul id="errorBlock2">
+        </ul>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Full Name" %>
+        <br>
+        <%= form.text_field :full_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Street 1" %>
+        <br>
+        <%= form.text_field :street1 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Street 2" %>
+        <br>
+        <%= form.text_field :street2 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Area" %>
+        <br>
+        <%= form.text_field :area %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"District" %>
+        <br>
+        <%= form.text_field :district %>
+      </div>
+
+
+      <div class="field">
+        <%= form.label :"State" %>
+        <br>
+        <%= form.text_field :state %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Pin Code" %>
+        <br>
+        <%= form.text_field :pin %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Contact Phone Number" %>
+        <br>
+        <%= form.text_field :contact_number %>
+      </div>
+
+      <div class="field">
+        <%= form.label :"Landmark" %>
+        <br>
+        <%= form.text_field :landmark %>
+      </div>
+
+      <div class="actions" id="newAddressFormBtn">
+          <%= form.submit "Submit", :class=>"btn new_address_btn " %>
+      </div>
+    <% end %>
+  </div>
+</div>
